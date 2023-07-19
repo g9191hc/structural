@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:structural/screen/foundation_screen.dart';
+
+import '../component/text_field_card.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -11,85 +14,49 @@ class HomeScreen extends StatelessWidget {
           'HomeScreen',
         ),
       ),
-      drawer: Drawer(
-        child: CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(
-              child: Center(
-                child: Text(
-                  'hi',
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
+      drawer: _Drawer(),
       // endDrawer: Drawer(),
-      body: Column(
-        // mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Column(
-            children: [
-              TextFieldCard(
-                title: '재료강도',
-                textFieldTitles: ['fck', 'fy'],
+      body: _Body(),
+    );
+  }
+}
+
+class _Drawer extends StatelessWidget {
+  const _Drawer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: Center(
+              child: Text(
+                'hi',
               ),
-            ],
-          ),
+            ),
+          )
         ],
       ),
     );
   }
 }
 
-class TextFieldCard extends StatelessWidget {
-  final String title;
-  final List<String> textFieldTitles;
-
-  const TextFieldCard({
-    super.key,
-    required this.title,
-    required this.textFieldTitles,
-  });
+class _Body extends StatelessWidget {
+  const _Body({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          Text(title),
-          ...textFieldTitles
-              .map(
-                (e) => Row(
-                  children: [
-                    SizedBox(
-                      width: 40,
-                      child: Text(
-                        e,
-                        style: TextStyle(
-                          fontSize: 20.0,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 100,
-                      child: TextFormField(
-                          maxLines: 1,
-                          keyboardType: TextInputType.number,
-                          decoration: InputDecoration(
-                            filled: true,
-                            fillColor: Colors.yellow[100],
-                            contentPadding: EdgeInsets.symmetric(horizontal: 10.0,)
-                          )
-                          // expands: true,
-                          ),
-                    ),
-                  ],
-                ),
-              )
-              .toList(),
-        ],
+    return Center(
+      child: ElevatedButton(
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => FoundationScreen(),
+            ),
+          );
+        },
+        child: Text('기초'),
       ),
     );
   }
