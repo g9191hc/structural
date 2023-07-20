@@ -31,45 +31,54 @@ class TextFieldCard extends StatelessWidget {
       ),
     );
   }
-  renderTextFields(){
+
+  renderTextFields() {
     return textFields
         .map(
           (e) => Row(
-        children: [
-          SizedBox(
-            width: 40,
-            child: Text(
-              e['title'],
-              style: TextStyle(
-                fontSize: 20.0,
+            children: [
+              SizedBox(
+                width: 40,
+                child: Text(
+                  e['title'],
+                  style: TextStyle(
+                    fontSize: 20.0,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
               ),
-              textAlign: TextAlign.center,
-            ),
-          ),
-          SizedBox(
-            width: 100,
-            child: TextFormField(
-                maxLines: 1,
-                keyboardType: isNumber == true ? TextInputType.number : null,
-                decoration: InputDecoration(
+              SizedBox(
+                width: 100,
+                child: TextFormField(
+                  validator : (String? val){
+                    (val == null || val.isEmpty) ? '값을 입력 해 주세요' : null;
+                  },
+                  maxLines: 1,
+                  keyboardType: isNumber == true ? TextInputType.number : null,
+                  decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.yellow[100],
                     border: OutlineInputBorder(),
                     contentPadding: EdgeInsets.symmetric(
                       horizontal: 10.0,
-                    ))
-              // expands: true,
-            ),
+                    ),
+                  ),
+                  // expands: true,
+                ),
+              ),
+              const SizedBox(
+                width: 8.0,
+              ),
+              Text(
+                e['unit'],
+                style: TextStyle(
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
           ),
-          const SizedBox(width: 8.0,),
-          Text(e['unit'],
-          style: TextStyle(
-            fontSize: 16.0,
-            fontWeight: FontWeight.w500,
-          ),),
-        ],
-      ),
-    )
+        )
         .toList();
   }
 }
