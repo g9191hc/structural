@@ -19,15 +19,19 @@ class TextFieldCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: 20.0,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-          ...renderTextFields()
+          _Title(),
+          ...renderTextFields(),
         ],
+      ),
+    );
+  }
+
+  Widget _Title(){
+    return Text(
+      title,
+      style: TextStyle(
+        fontSize: 20.0,
+        fontWeight: FontWeight.w700,
       ),
     );
   }
@@ -50,14 +54,14 @@ class TextFieldCard extends StatelessWidget {
               SizedBox(
                 width: 100,
                 child: TextFormField(
-                  validator : (String? val){
-                    (val == null || val.isEmpty) ? '값을 입력 해 주세요' : null;
-                  },
+                  validator : (String? val)=>
+                    (val == null || val.isEmpty) ? '값을 입력 해 주세요' : null
+                  ,
                   maxLines: 1,
                   keyboardType: isNumber == true ? TextInputType.number : null,
                   decoration: InputDecoration(
                     filled: true,
-                    fillColor: Colors.yellow[100],
+                    fillColor: Colors.blue[100],
                     border: OutlineInputBorder(),
                     contentPadding: EdgeInsets.symmetric(
                       horizontal: 10.0,

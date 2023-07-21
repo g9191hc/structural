@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:structural/sample/sample_home_screen.dart';
 import 'package:structural/screen/home_screen.dart';
 
 void main() {
@@ -15,7 +16,9 @@ class _App extends StatelessWidget {
         fontFamily: 'NotoSans'
       ),
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home:
+      HomeScreen(),
+      // SampleHomeScreen(),
     );
   }
 }
